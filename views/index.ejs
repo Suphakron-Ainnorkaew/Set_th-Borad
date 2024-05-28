@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        <a href="/add" class="btn btn-sm btn-outline-secondary">+ New SET</a>
+      </div>
+    </div>
+  </div>
+  
+  <% messages.forEach(element => { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= element %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% }) %>
+  
+  <div class="table-responsive" >
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Company</th>
+          <th scope="col">setname</th>
+          <th scope="col">Group</th>
+          <th scope="col" >Priceaverage</th>
+          <th scope="col">Profitaverage</th>
+          <th scope="col">Averagedividend</th>
+          <th scope="col" class="text-end">Ds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% setCompany.forEach(element => { %>
+          <tr>
+            <td><%= element.company %></td>
+            <td><%= element.setname %></td>
+            <td><%= element.group %></td>
+            <td ><%= element.Priceaverage %></td>
+            <td ><%= element.Profitaverage %></td>
+            <td ><%= element.Averagedividend %></td>
+            <td class="text-end"><%= element.margin %></td>
+  
+            <td class="text-end">
+              <div class="btn-group" role="group" aria-label="Actions">
+                <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-sm me-2">
+                  <i class="bi bi-eye"></i>
+                </a>
+            
+                <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-sm me-2">
+                  <i class="bi bi-pencil"></i>
+                </a>
+            
+                <form action="/edit/<%= element._id %>?_method=DELETE" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-person-x"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+            
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  
